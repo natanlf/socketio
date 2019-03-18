@@ -21,16 +21,14 @@ export default class App extends Component {
     super();
 
     this.socket = io("localhost:3000")
-  }
 
-  state = {
-		timestamp: 'no timestamp yet'
-	};
+    this.socket.on("update", () => this.setState({name: 'Nate'}))
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{this.state.name}</Text>
+        <Text style={styles.welcome}>Name = {this.state.name}</Text>
       </View>
     );
   }

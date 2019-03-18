@@ -11,6 +11,8 @@ import {StyleSheet, Text, View} from 'react-native';
 window.navigator.userAgent = 'react-native';
 import io from "socket.io-client/dist/socket.io"
 
+import PushNotification  from 'react-native-push-notification'
+
 export default class App extends Component {
 
   state = {
@@ -20,9 +22,16 @@ export default class App extends Component {
   constructor(){
     super();
 
-    this.socket = io("localhost:3000")
+    this.socket = io("192.168.10.118:3000")
 
-    this.socket.on("update", () => this.setState({name: 'Nate'}))
+    this.socket.on("update", () => this.notify())
+  }
+
+  notify(){
+    PushNotification.localNotification({
+      message: "Notification!",
+      date: new Date(Date.now() + (60 * 1000))
+    })
   }
 
   render() {

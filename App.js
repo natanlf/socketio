@@ -22,9 +22,11 @@ export default class App extends Component {
   constructor(){
     super();
 
-    this.socket = io("192.168.10.118:3000")
+    this.socket = io("http://192.168.10.118:3000")
 
     this.socket.on("update", () => this.notify())
+
+    
   }
 
   notify(){
